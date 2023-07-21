@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <link type="text/css" rel="stylesheet" th:href="@{/css/register.css}"/>
+  <script src="https://kit.fontawesome.com/0f3f056d8a.js" crossorigin="anonymous"></script>
+  <title>Sign Up</title>
+</head>
+<body>
+<section class="forms-section">
+  <h1 class="section-title">REGISTER</h1>
+      <form class="form form-signup mt" th:action="@{/register}" th:object="${user}" method="post" onsubmit="return validate(this);">
+        <fieldset>
+          <legend id="msg">Please, enter your email, password and password confirmation for sign up.</legend>
+          <div class="alert" id="alert" th:if="${#fields.hasErrors('*')}">
+            <button class="btn-close" onclick="this.parentElement.style.display='none';" type="button">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+          </div>
+          <div class="input-block">
+            <label for="signup-email">E-mail</label>
+            <input id="signup-email" type="email"  class="form-control" th:field="*{email}"  th:errorclass="is-invalid" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-password">Password</label>
+            <input id="signup-password" type="password" class="form-control" th:field="*{password}"  th:errorclass="is-invalid" required>
+          </div>
+          <div class="input-block">
+            <label for="signup-password-confirm">Confirm password</label>
+            <input id="signup-password-confirm" type="password" class="form-control" th:field="*{passwordCon}"  th:errorclass="is-invalid" required>
+            <span id='message'></span>
+          </div>
+        </fieldset>
+        <button type="submit" id="btn" class="btn-signup" onclick="return validate()">Continue</button>
+      </form>
+</section>
+<script th:inline="javascript">
+  function validate() {
+    const a = document.getElementById("signup-password").value;
+    const b = document.getElementById("signup-password-confirm").value;
+    if(a !== b) {
+      document.getElementById("message").innerHTML = "Passwords do not match";
+      return false;
+    }
+    return a === b;
+  }
+
+</script>
+</body>
+</html>

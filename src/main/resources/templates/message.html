@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/pw_reset.css}"/>
+</head>
+<body>
+<div class="text-center" th:if="${message != null}">
+    <h1>[[${title}]]</h1>
+    <h2>[[${message}]]</h2>
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frags</title>
+
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/modal.css" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/webjars/htmx.org/dist/htmx.min.js}"></script>
+    <script type="text/javascript"
+            th:src="@{/webjars/hyperscript.org/dist/_hyperscript.js}"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <header th:fragment="header">
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-compass-drafting "></i>
+            </div>
+            <ul class="navbar-list">
+                <li class="nav-item">
+                    <a href="#">
+                    <span class="nav-item_icon">
+                    <i class="fa fa-solid fa-house" title="Home"></i>
+                    </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                    <span class="nav-item_icon">
+                    <i class="fa fa-solid fa-calendar-check" title="Calender"></i>
+                    </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                    <span class="nav-item_icon">
+                    <i class="fa fa-solid fa-file" title="Documents"></i>
+                    </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">
+                    <span class="nav-item_icon">
+                    <i class="fa fa-solid fa-gear" title="Settings"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#">
+                    <span class="nav-item_icon logout">
+                    <i class="fa fa-solid fa-arrow-right-to-bracket" title="Logout"></i>
+                    </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="search-box">
+                <form action="">
+                    <input id="searchbar" type="text" name="value2" placeholder="Search">
+                    <button class="btn btn-search" hx-post="searching" hx-target="#page-content-wrapper" hx-include="searchbar">
+                        <i class="fa-solid fa-magnifying-glass fa-2xs"></i>
+                    </button>
+                </form>
+            </div>
+            <main class="bd-content" role="main">
+                <div id="page-content-wrapper">
+                    <h2>Advanced Double Navigation with fixed SideNav under fixed Navbar:</h2>
+                    <br>
+                    <h5>1. Fixed side menu, hidden on small devices.</h5>
+                    <h5>2. Fixed Navbar. It will always stay visible on the top, even when you scroll down.</h5>
+                    sdfaaaaaaaaaaaaaaaaaaaaa
+                </div>
+                <div class="container" th:object="${item}">
+                    <div id="greeting">Hello World</div>
+                    <input id="name" name="value" type="text" />
+                    <button _="on htmx:afterRequest put '' into #name.value" hx-include="#name" th:attr="hx-post=@{/api/test/greet}" hx-target="#greeting"  hx-swap="beforeend" hx-trigger="click">Greet</button>
+                </div>
+            </main>
+        </div>
+        <div class="statsbar close">
+            <div class="statsbar-top">
+                <button type="button" class="btn btn-primary btn-new-app" hx-get="/modal" hx-target="body" hx-swap="beforeend">
+                Add New Application
+                </button>
+                <button type="button" class="btn btn-statsbar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            <div class="stats-info">
+                <dl>
+                    <dt>700</dt>
+                    <dd>Jobs Applied</dd>
+
+                    <dt>Microsoft</dt>
+                    <dd>Most Applied to Company</dd>
+
+                    <dt>1%</dt>
+                    <dd>Given Interview Chance</dd>
+
+                    <dt><button class="btn"><i class="fa-solid fa-file-lines"></i></button></dt>
+                    <dd>Resume With Most Responses</dd>
+                </dl>
+            </div>
+        </div>
+    </header>
+</div>
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+    <div class="modal-underlay" _="on click trigger closeModal"></div>
+    <div class="modal-content">
+        <h1>Modal Dialog</h1>
+        This is the modal content.
+        You can put anything here, like text, or a form, or an image.
+        <br>
+        <br>
+        <button _="on click trigger closeModal">Close</button>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/0f3f056d8a.js" crossorigin="anonymous"></script>
+<script src="/js/mainJS.js"></script>
+</body>
+</html>
+

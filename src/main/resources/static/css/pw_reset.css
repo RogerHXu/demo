@@ -1,0 +1,79 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    /*background: #e9edd2;*/
+    background: #8A6;
+    color: #444;
+    font-family: "Lucida Sans Unicode", -apple-system,'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    line-height:1.5;
+    text-align: center;
+}
+
+form{
+    width: 340px;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 15px;
+    background: #fff8ed;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-control{
+    padding: 5px 12px;
+    line-height: 20px;
+    vertical-align: middle;
+    border: none;
+    border-radius: 4px;
+    color: #444;
+    background-color: #ece7e3;
+    width: 80%;
+    outline: none;
+    font-size: 15px;
+}
+
+.btn{
+    padding: 8px 18px;
+    font-weight: 500;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: none;
+    background-color: #c8e39c;
+    color: #444;
+    border-radius: 4px;
+}
+
+.btn:hover{
+    background-color: #9cc078;
+    transition: 0.7s;
+}
+
+.alert{
+    border-color: red;
+    background: #fabebe;
+    padding: 0 18px;
+    margin: 0 auto 8px;
+    font-size: 14px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    width: 340px;
+    color: red;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: red;
+    font-weight: bold;
+    float: right;
+    font-size: 18px;
+    line-height: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 12px;
+}

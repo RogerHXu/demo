@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+
+
+    <script src="https://kit.fontawesome.com/0f3f056d8a.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/webjars/htmx.org/dist/htmx.min.js}"></script>
+    <script type="text/javascript"
+            th:src="@{/webjars/hyperscript.org/dist/_hyperscript.js}"></script>
+    <title>Title</title>
+    <style>
+        label, input {
+            display: block;
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        .radios label, .radios input {
+            display: inline;
+            font-weight: normal;
+        }
+
+        .btn-custom {
+            border-radius: 9px;
+            outline: none;
+            text-align: center;
+            height: 45px;
+            min-width: 10vw;
+            background: #33BC84;
+            color: #FBEBD5;
+            box-shadow: 0 1px rgba(30, 30, 229, 0.35);
+            margin: auto;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .btn-custom:hover {
+            background: #3ddc9b;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me" class="bd-content" th:action="@{/create_application}">
+    <button type="button" class="btn btn-primary btn-custom" data-bs-toggle="modal" data-bs-target="modal">Add New
+        Application
+    </button>
+
+    <div class="modal-underlay" _="on click trigger closeModal" style="display:block;"></div>>
+    <div id="modal-content" class="modal fade show" tabindex="-1" style="display:block;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Application form</h5>
+                </div>
+
+                <div class="modal-body">
+                    <fieldset>
+                        <legend style="font-size: 1rem">All fields with an asterisk are required</legend>
+                        <form method="post">
+                            <div class="required_inputs">
+                                <div class="job_title">
+                                    <label for="job_title">Job Title*</label>
+                                    <input type="text" id="job_title" style="width: 100%; margin-bottom: 5px"
+                                           placeholder="Job Title"
+                                           required>
+                                </div>
+                                <div>
+                                    <label for="company_name">Company Name*</label>
+                                    <input type="text" id="Company_name" style="width: 100%; margin-bottom: 5px"
+                                           placeholder="Company Name"
+                                           required>
+                                </div>
+                                <div style="float: left; margin-bottom: 5px; margin-right: 79px;">
+                                    <label for="date">Date Applied*</label>
+                                    <input type="date" id="date" placeholder="date" required>
+                                </div>
+
+                                <div class="app_status radios">
+                                    <fieldset>
+                                        <legend style="font-size: 1rem; font-weight: 500">Application Status*</legend>
+                                        <input type="radio" id="status_1" name="job_status" value="pending">
+                                        <label for="status_1">Pending</label>
+                                        <input type="radio" id="status_2" name="job_status" value="rejected">
+                                        <label for="status_2">Rejected</label>
+                                        <input type="radio" id="status_3" name="job_status" value="accepted">
+                                        <label for="status_3">Accepted</label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="documents">
+                                <div class="dropdown">
+                                    <p style=" margin-bottom: 3px; font-weight: 500">Select the resume/cover-letter you
+                                        used for the
+                                        application</p>
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        Dropdown button
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                                <p style="margin-top: 3px; margin-bottom: 3px; font-weight: 500">Or upload a new one</p>
+                                <input type="file" id="myFile" name="filename">
+                            </div>
+                            <hr>
+                            <div class="radios">
+                                <fieldset style="float: left">
+                                    <legend style="font-size: 1rem; font-weight: 500">Interviewed?</legend>
+                                    <input type="radio" id="int_1" name="interviewed" placeholder="interviewed?"
+                                           value="yes">
+                                    <label for="int_1">Yes</label>
+                                    <input type="radio" id="int_2" name="interviewed" placeholder="interviewed?"
+                                           value="no">
+                                    <label for="int_2">No</label>
+                                </fieldset>
+                            </div>
+
+                            <div>
+                                <label for="location">Job Location</label>
+                                <input type="text" id="location" placeholder="Location" required>
+                            </div>
+                            <div>
+                                <label for="comments" style="margin-top: 10px">Comments</label>
+                                <textarea id="comments" rows="5" cols="60"
+                                ></textarea>
+                            </div>
+                            <div>
+                                <label for="links">Additional Links</label>
+                                <input type="text" id="links" placeholder="https://..." required>
+                            </div>
+                        </form>
+                    </fieldset>
+                </div>
+                <div class="modal-footer" style="display: flex; justify-content: space-between">
+                    <button type="submit" class="btn btn-submit" style="background: #33BC84; color:white">Submit
+                    </button>
+                    <button type="button" class="btn btn-secondary" _="on click trigger closeModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/mainJS.js"></script>
+</body>
+</html>

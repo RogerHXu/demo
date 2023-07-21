@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/login.css}"/>
+    <script src="https://kit.fontawesome.com/0f3f056d8a.js" crossorigin="anonymous"></script>
+    <title>Log in to </title>
+</head>
+<body>
+<div class="pad">
+    <div class="container">
+        <h1 class="section-title">Sign in</h1>
+        <div class="js-popup">
+            <div class="popup pop-error" id="invalid-pw-msg" th:if="${param.error}">
+                Invalid email or password.
+                <button class="btn-close" onclick=hide("invalid-pw-msg") type="button">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="popup pop-logout" id="logout-msg" th:if="${param.logout}">
+                You have been logged out.
+                <button class="btn-close" onclick=hide("logout-msg") type="button">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <form class="form-body mt" th:action="@{/login}" method="post">
+            <label for="login-email">Email address</label>
+            <input id="login-email" type="email" name="usernameEm"  class="form-control input-block"
+                   required/>
+            <div class="form-body-lower">
+                <label for="login-password">Password</label>
+                <input id="login-password" type="password" name="password"
+                       class="form-control input-block" required/>
+                <a class="forgot-link" th:href="@{/password_reset}">Forgot your password?</a>
+            </div>
+            <button type="submit" value="Log in" class="btn-login">Login</button>
+        </form>
+        <p class="new-account-link">
+            New?
+            <a th:href="@{/register}">Create an account</a>
+        </p>
+    </div>
+</div>
+<script>
+    function hide(s) {
+        const x = document.getElementById(s);
+        x.style.display = "none";
+    }
+</script>
+</body>
+</html>
+
